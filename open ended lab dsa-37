@@ -1,0 +1,165 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "d5307486-995f-4ad2-9f62-8a7fdcfa9fad",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Enter the integers for linked list, separate them by spaces:\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      " 1 2 3 6 7\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Original linked list:\n",
+      "1 -> 2 -> 3 -> 6 -> 7 -> Null\n"
+     ]
+    },
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "Enter the number of nodes to skip [m]:  1\n",
+      "Enter the number of nodes to delete [n]:  2\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Modified linked list :\n",
+      "1 -> 6 -> Null\n"
+     ]
+    }
+   ],
+   "source": [
+    "class Node:\n",
+    "    def __init__(self, data):\n",
+    "        self.data = data\n",
+    "        self.next = None\n",
+    "\n",
+    "class LinkedList:\n",
+    "    def __init__(self):\n",
+    "        self.head = None\n",
+    "\n",
+    "    def append(self, data):\n",
+    "        #Add another node including the data in the linked list\n",
+    "        next_node = Node(data)\n",
+    "        if not self.head:\n",
+    "            self.head = next_node\n",
+    "            return\n",
+    "        last = self.head\n",
+    "        while last.next:\n",
+    "            last = last.next\n",
+    "        last.next = next_node\n",
+    "\n",
+    "    def print_list(self):\n",
+    "        #Print the linked list\n",
+    "        current = self.head\n",
+    "        if current is None:\n",
+    "            print(\"The list is empty.\")\n",
+    "        while current:\n",
+    "            print(current.data, end=\" -> \")\n",
+    "            current = current.next\n",
+    "        print(\"Null\")\n",
+    "\n",
+    "    def skip_and_del(self, m, n):\n",
+    "        #Skip m nodes and delete n nodes repeatedly till the end \n",
+    "        if not self.head or m < 0 or n < 0:\n",
+    "            print(\"Error: Invalid input\")\n",
+    "            return\n",
+    "        \n",
+    "        current = self.head\n",
+    "        while current:\n",
+    "            # Skip m nodes\n",
+    "            for i in range(m - 1):\n",
+    "                if current and current.next:\n",
+    "                    current = current.next\n",
+    "                else:\n",
+    "                    return  \n",
+    "\n",
+    "            if not current or not current.next:1\n",
+    "                return \n",
+    "\n",
+    "            # Del n nodes\n",
+    "            tmp = current.next\n",
+    "            for i in range(n):\n",
+    "                if tmp:\n",
+    "                    tmp = tmp.next\n",
+    "                else:\n",
+    "                    break\n",
+    "            current.next = tmp\n",
+    "\n",
+    "            # Move to the next node\n",
+    "            current = tmp\n",
+    "\n",
+    "def create_linked_list():\n",
+    "    linked_list = LinkedList()\n",
+    "    print(\"Enter the integers for linked list, separate them by spaces:\")\n",
+    "    values = list(map(int, input().split()))\n",
+    "    for value in values:\n",
+    "        linked_list.append(value)\n",
+    "    return linked_list\n",
+    "\n",
+    "def main():\n",
+    "    linked_list = create_linked_list()\n",
+    "   \n",
+    "    print(\"Original linked list:\")\n",
+    "    linked_list.print_list()\n",
+    "\n",
+    "    m = int(input(\"Enter the number of nodes to skip [m]: \"))\n",
+    "    n = int(input(\"Enter the number of nodes to delete [n]: \"))\n",
+    "\n",
+    "    linked_list.skip_and_del(m, n)\n",
+    "\n",
+    "    print(\"Modified linked list :\")\n",
+    "    linked_list.print_list()\n",
+    "    \n",
+    "if __name__ == \"__main__\":\n",
+    "    main()\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
